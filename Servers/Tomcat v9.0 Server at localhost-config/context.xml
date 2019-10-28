@@ -26,4 +26,10 @@
     <!--
     <Manager pathname="" />
     -->
+    
+    <ResourceLink 
+    	type="javax.sql.DataSource" 
+    	name="reflibreria" 
+    	global="jdbc/libreriads"/>
+    	
 </Context>
