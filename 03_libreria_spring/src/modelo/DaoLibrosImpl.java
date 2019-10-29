@@ -28,8 +28,7 @@ import javabeans.Libro;
  public class DaoLibrosImpl implements DaoLibros {
 	@Autowired 
 	DataSource ds;
-	
-	
+		
     @Override
 	public List<Libro> recuperarLibros(){
     	List<Libro> lista=new ArrayList<> ();
@@ -50,6 +49,7 @@ import javabeans.Libro;
         }   
         return lista; 
     }
+    
     @Override
 	public List<Libro> recuperarLibros(int idTema){
     	List<Libro> lista=new ArrayList<> ();
@@ -70,7 +70,5 @@ import javabeans.Libro;
             ex.printStackTrace();
         }   
         return lista; 
-    }
-    
-    
+    }       
 }

@@ -22,7 +22,7 @@ public class PruebaContactos {
 		// No podemos usar inyección de dependencias para obtener una implementaicón de DaoContactos porque en esta
 		// clase PruebaContactos no podemos usar inyección.
 		DaoContactos dao = factoria.getBean(DaoContactos.class);
-		dao.altaContacto(new Contacto("Pedrin","pedro@gmail.com",22));
+		dao.altaContacto(new Contacto("Pedro Menendez de Aviles","pedroaviles@gmail.com",515));
 		List<Contacto> contactos = dao.dameContactos();
 		for(Contacto c:contactos) {
 			System.out.println(c.getNombre());
