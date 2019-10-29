@@ -61,4 +61,9 @@
 	    <version>1.2</version>
 	</dependency>	
   </dependencies>
+  <parent>
+  	<groupId>proyecto.padre.spring</groupId>
+  	<artifactId>proyecto.padre.spring</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
 </project>
