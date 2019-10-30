@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import daos.DaoContactos;
-import fabricas.FactoryDao;
 import model.Contacto;
 
 

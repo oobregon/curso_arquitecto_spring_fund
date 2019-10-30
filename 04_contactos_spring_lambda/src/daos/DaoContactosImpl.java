@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import model.Contacto;
 
 // Este value es un id que sirve para hacer referencia a él desde la capa de servicio.
-@Repository (value = "daoContImplUno")
+// Si hubiera más de una implementación de la interface DaoContactos, entonces usaríamos
+// la propiedad @Repository (value = "daoContImplUno")
+@Repository
 public class DaoContactosImpl implements DaoContactos {	
 	@Autowired
 	JdbcTemplate accDatos;

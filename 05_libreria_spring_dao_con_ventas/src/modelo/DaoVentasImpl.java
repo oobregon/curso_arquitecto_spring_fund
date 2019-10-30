@@ -15,7 +15,8 @@ public class DaoVentasImpl implements DaoVentas {
 	@Autowired
 	JdbcTemplate accDatos;
 	
-	// Hay 5 libros, se llevan insertados 3 y se produce una excepción. ¿Qué ocurre si se insertan 3 y
+	// Hay 5 libros que se tienen que insertar; empieza la ejecución del método, y cuando ya se han insertado 3 se produce una excepción. 
+	// ¿Qué ocurre ahora? ¿Se quedan insertados esos 3 y los otros 2 no? ¿Se rechaza la inserción de esos 3?
 	// ¿Cómo conseguimos que si falla una de las inserciones se deshagan todas las operaciones? 
 	// Mediante el objeto TransactionManager
 	// @Transactional no es inyección de dependencias. Lo que estamos diciendo es que se aplique a este método

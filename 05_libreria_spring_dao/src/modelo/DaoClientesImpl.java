@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javabeans.Cliente;
 
-@Repository (value = "daoClienImplUno")
+@Repository
 public class DaoClientesImpl implements DaoClientes {
 	@Autowired
 	JdbcTemplate accDatos;	

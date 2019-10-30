@@ -20,7 +20,7 @@ import javabeans.Tema;
  *
  * @author Profesortarde
  */
-@Repository (value = "daoTemasImplUno")
+@Repository
  public class DaoTemasImpl implements DaoTemas { 
 	@Autowired
 	JdbcTemplate accDatos;

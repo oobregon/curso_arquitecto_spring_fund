@@ -13,11 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import javabeans.Libro;
 
-/**
- *
- * @author Profesortarde
- */
-@Repository (value = "daoLibImplUno")
+@Repository
  public class DaoLibrosImpl implements DaoLibros {
 	@Autowired
 	JdbcTemplate accDatos;	
