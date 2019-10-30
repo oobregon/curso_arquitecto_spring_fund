@@ -22,7 +22,7 @@ public class DaoMovimientosImpl implements DaoMovimientos {
 	@Override
 	public void saveMovimiento(Movimiento movimiento) {
 		String sql = "insert into movimiento (idCuenta,fecha,cantidad,operacion) values (?,?,?,?)";
-		accDatos.update(sql,movimiento.getCuenta(),
+		accDatos.update(sql,movimiento.getIdCuenta(),
 						    movimiento.getFecha(),
 						    movimiento.getCantidad(),
 						    movimiento.getOperacion());

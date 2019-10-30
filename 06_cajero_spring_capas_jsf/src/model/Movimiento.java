@@ -6,8 +6,10 @@ import java.util.Date;
 public class Movimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idMovimiento;
-
 	private double cantidad;
+	private Date fecha;
+	private String operacion;
+	private int idCuenta;
 
 	public Movimiento(int idMovimiento, double cantidad, Date fecha, String operacion,int idCuenta) {
 		super();
@@ -15,14 +17,8 @@ public class Movimiento implements Serializable {
 		this.cantidad = cantidad;
 		this.fecha = fecha;
 		this.operacion = operacion;
-		this.cuenta = idCuenta;
+		this.idCuenta = idCuenta;
 	}
-
-	private Date fecha;
-
-	private String operacion;
-
-	private int cuenta;
 
 	public Movimiento() {
 	}
@@ -59,11 +55,11 @@ public class Movimiento implements Serializable {
 		this.operacion = operacion;
 	}
 
-	public int getCuenta() {
-		return this.cuenta;
+	public int getIdCuenta() {
+		return this.idCuenta;
 	}
 
-	public void setCuenta(int cuenta) {
-		this.cuenta = cuenta;
+	public void setIdCuenta(int cuenta) {
+		this.idCuenta = cuenta;
 	}
 }
