@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<context:annotation-config />
-	<context:component-scan base-package="dao" />	
+	<context:component-scan base-package="dao,service" />	
 	<jee:jndi-lookup jndi-name="refbanco" id="dsServidor"/>
 	
 	<bean id="template"
@@ -21,6 +21,6 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property ref="dsServidor" name="dataSource"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="gestorTxt"/>
 
 </beans>

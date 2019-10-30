@@ -9,8 +9,7 @@ import org.springframework.stereotype.Repository;
 import model.Cliente;
 
 @Repository
-public class DaoClientesImpl implements DaoClientes {
-	
+public class DaoClientesImpl implements DaoClientes {	
 	@Autowired
 	JdbcTemplate accDatos;
 	

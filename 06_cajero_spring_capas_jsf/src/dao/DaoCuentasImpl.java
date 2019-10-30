@@ -16,9 +16,16 @@ public class DaoCuentasImpl implements DaoCuentas {
 	@Override
 	public Cuenta findCuenta(int numCuenta) {
 		String sql = "select * from cuentas where numeroCuenta = ?";
-		return accDatos.query(sql,(rs,filas) -> new Cuenta(rs.getInt("numeroCuenta"),
+		
+		// Podemos devolver el elementos 0 de la lista, o bien, usar el método queryForObject, que mostramos 
+		// en el return del método.
+		accDatos.query(sql,(rs,filas) -> new Cuenta(rs.getInt("numeroCuenta"),
 				                                           rs.getDouble("saldo"),
 				                                           rs.getString("tipocuenta")),numCuenta).get(0);
+		
+		return accDatos.queryForObject(sql,(rs,filas) -> new Cuenta(rs.getInt("numeroCuenta"),
+													                rs.getDouble("saldo"),
+													                rs.getString("tipocuenta")),numCuenta);
 	}
 
 	@Override

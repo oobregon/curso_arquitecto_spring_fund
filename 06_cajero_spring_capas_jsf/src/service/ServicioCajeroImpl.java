@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.DaoClientes;
 import dao.DaoCuentas;
@@ -12,6 +14,7 @@ import model.Cliente;
 import model.Cuenta;
 import model.Movimiento;
 
+@Service (value = "capasercajero")
 public class ServicioCajeroImpl implements ServicioCajero {
 	// La capa de servicio no debe contener ninguna sentencia de acceso a datos, ninguna sentencia
 	// de persistencia (no jdbc, no jpa, no ds). La capa que conoce el acceso a datos es la capa Dao.
@@ -36,6 +39,7 @@ public class ServicioCajeroImpl implements ServicioCajero {
 		return daoCuentas.findCuenta(numCuenta);
 	}
 
+	@Transactional
 	@Override
 	public void extraer(int numCuenta, double cantidad) {
 		Cuenta cuenta = daoCuentas.findCuenta(numCuenta);
@@ -49,6 +53,7 @@ public class ServicioCajeroImpl implements ServicioCajero {
 		}
 	}
 
+	@Transactional
 	@Override
 	public void ingresar(int numCuenta, double cantidad) {
 		Cuenta cuenta = daoCuentas.findCuenta(numCuenta);
@@ -58,7 +63,8 @@ public class ServicioCajeroImpl implements ServicioCajero {
 		daoMov.saveMovimiento(movimiento);
 	}
 
-	@Override
+	@Transactional
+	@Override	
 	public void transferir(int numCuentaOrigen, int numCuentaDestino, double cantidad) {
 		this.extraer(numCuentaOrigen,cantidad);
 		this.ingresar(numCuentaDestino,cantidad);

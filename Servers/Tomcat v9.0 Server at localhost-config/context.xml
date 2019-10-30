@@ -32,4 +32,9 @@
     	name="reflibreria" 
     	global="jdbc/libreriads"/>
     	
+    <ResourceLink 
+		type="javax.sql.DataSource" 
+		name="refbanco" 
+		global="jdbc/bancods"/>
+    	
 </Context>
