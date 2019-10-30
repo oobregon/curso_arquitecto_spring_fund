@@ -35,7 +35,7 @@ import javabeans.Libro;
     
     @Override
 	public List<Libro> recuperarLibros(int idTema) {
-    	String sql="select * from libros where idTema=?";
+    	String sql="select * from libros where idTema = ?";
     	return accDatos.query(sql,(rs,fila) -> new Libro(rs.getInt("isbn"),
                 			rs.getString("titulo"),
                 			rs.getString("autor"),
