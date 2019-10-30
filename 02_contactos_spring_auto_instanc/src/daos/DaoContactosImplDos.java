@@ -11,10 +11,13 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import model.Contacto;
 
-public class DaoContactosImpl implements DaoContactos {	
+// Este value es un id que sirve para hacer referencia a él desde la capa de servicio.
+@Repository (value = "daoContImplDos")
+public class DaoContactosImplDos implements DaoContactos {	
 	@Autowired
 	DataSource ds;	
 	
@@ -91,3 +94,4 @@ public class DaoContactosImpl implements DaoContactos {
 		return lista;
 	}	
 }
+

@@ -9,7 +9,7 @@
 		
 	<context:annotation-config />
 	
-	<jee:jndi-lookup jndi-name="reflibreria" id="dsServidor"/>
+	<jee:jndi-lookup jndi-name="reflibros" id="dsServidor"/>
 
 	<bean id="data"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

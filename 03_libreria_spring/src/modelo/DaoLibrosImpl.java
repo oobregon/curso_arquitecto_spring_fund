@@ -21,18 +21,15 @@ import org.springframework.stereotype.Repository;
 
 import javabeans.Libro;
 
-/**
- *
- * @author Profesortarde
- */
 @Repository (value = "daoLibImplUno")
- public class DaoLibrosImpl implements DaoLibros {
+public class DaoLibrosImpl implements DaoLibros {
+		
 	@Autowired 
 	@Qualifier ("dsServidor")
 	DataSource ds;
 		
     @Override
-	public List<Libro> recuperarLibros(){
+	public List<Libro> recuperarLibros() {
     	List<Libro> lista=new ArrayList<> ();
         try(Connection cn = ds.getConnection();) {                       
         	String sql="select * from libros";
