@@ -1,44 +1,28 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Date;
 
-
-/**
- * The persistent class for the movimientos database table.
- * 
- */
-@Entity
-@Table(name="movimientos")
-@NamedQuery(name="Movimiento.findAll", query="SELECT m FROM Movimiento m")
 public class Movimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idMovimiento;
 
 	private double cantidad;
 
-	public Movimiento(int idMovimiento, double cantidad, Date fecha, String operacion, Cuenta cuenta) {
+	public Movimiento(int idMovimiento, double cantidad, Date fecha, String operacion,int idCuenta) {
 		super();
 		this.idMovimiento = idMovimiento;
 		this.cantidad = cantidad;
 		this.fecha = fecha;
 		this.operacion = operacion;
-		this.cuenta = cuenta;
+		this.cuenta = idCuenta;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 
 	private String operacion;
 
-	//bi-directional many-to-one association to Cuenta
-	@ManyToOne
-	@JoinColumn(name="idCuenta",referencedColumnName = "numeroCuenta")
-	private Cuenta cuenta;
+	private int cuenta;
 
 	public Movimiento() {
 	}
@@ -75,12 +59,11 @@ public class Movimiento implements Serializable {
 		this.operacion = operacion;
 	}
 
-	public Cuenta getCuenta() {
+	public int getCuenta() {
 		return this.cuenta;
 	}
 
-	public void setCuenta(Cuenta cuenta) {
+	public void setCuenta(int cuenta) {
 		this.cuenta = cuenta;
 	}
-
 }

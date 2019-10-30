@@ -14,8 +14,8 @@ import model.Movimiento;
 
 public class ServicioCajeroImpl implements ServicioCajero {
 	// La capa de servicio no debe contener ninguna sentencia de acceso a datos, ninguna sentencia
-	// de persistencia (no jdbc, no jpa, no ds). La capa que conoce acceso a datos es la capa Dao.
-	// Inyectar interfaces EJB de negocio no son sentencias de acceso a datos. 
+	// de persistencia (no jdbc, no jpa, no ds). La capa que conoce el acceso a datos es la capa Dao.
+	// Inyectar interfaces de negocio (EJB o spring), no son sentencias de acceso a datos. 
 	//
 	// Viendo esta capa de servicio no debemos ver ningún vínculo a tecnologías de acceso a 
 	// datos. La inyección de EJB,s es independiente de la tecnología de acceso a datos (jpa,
@@ -42,7 +42,7 @@ public class ServicioCajeroImpl implements ServicioCajero {
 		if(cuenta.getSaldo() >= cantidad) {
 			cuenta.setSaldo(cuenta.getSaldo()-cantidad);
 			daoCuentas.updateCuenta(cuenta);
-			Movimiento mov = new Movimiento(0,cantidad,new Date(),"Extracción",cuenta);
+			Movimiento mov = new Movimiento(0,cantidad,new Date(),"Extracción",cuenta.getNumeroCuenta());
 			daoMov.saveMovimiento(mov);
 		} else {
 			throw new RuntimeException();
@@ -54,7 +54,7 @@ public class ServicioCajeroImpl implements ServicioCajero {
 		Cuenta cuenta = daoCuentas.findCuenta(numCuenta);
 		cuenta.setSaldo(cuenta.getSaldo()+cantidad);
 		daoCuentas.updateCuenta(cuenta);
-		Movimiento movimiento = new Movimiento(0,cantidad,new Date(),"Ingreso",cuenta);
+		Movimiento movimiento = new Movimiento(0,cantidad,new Date(),"Ingreso",cuenta.getNumeroCuenta());
 		daoMov.saveMovimiento(movimiento);
 	}
 
