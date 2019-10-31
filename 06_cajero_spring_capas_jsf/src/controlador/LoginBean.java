@@ -12,7 +12,8 @@ import service.ServicioCajero;
 @SessionScoped
 public class LoginBean {
 	private int cuenta;
-	@ManagedProperty("#{capasercajero}")
+	
+	@ManagedProperty("#{capaservcajero}")
 	ServicioCajero cajero;
 	
 

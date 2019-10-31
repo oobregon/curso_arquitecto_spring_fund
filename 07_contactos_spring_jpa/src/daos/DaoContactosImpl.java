@@ -2,21 +2,19 @@ package daos;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import model.Contacto;
 
-/**
- * Session Bean implementation class DaoContactosImpl
- */
-@Stateless
+@Repository
 public class DaoContactosImpl implements DaoContactos {
 	
 	// Inyección de dependencia. Estamos inyectando el objeto EntityManager. Esta interface nos ofrece
-	// las operaciones basicas que podemos realizar, de forma indirecta contra la BD (a través de la capa de persistencia)
+	// las operaciones basicas que podemos realizar, de forma indirecta, contra la BD (a través de la capa de persistencia)
 	@PersistenceContext(unitName = "UPagenda")
 	EntityManager em;
 

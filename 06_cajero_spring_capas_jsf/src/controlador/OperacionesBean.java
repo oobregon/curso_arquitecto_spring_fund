@@ -3,15 +3,36 @@ package controlador;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import service.ServicioCajero;
+
 @ManagedBean
 public class OperacionesBean {
 	private double cantidad;
 	private int destino;
+	private int cambioCuenta;
 	
-	@ManagedProperty("#{capasercajero}")
+	@ManagedProperty("#{capaservcajero}")
 	ServicioCajero cajero;
+	
 	@ManagedProperty("#{loginBean}")
 	LoginBean login;
+	
+	public String cambiarCuenta() {
+		login.setCuenta(getCambioCuenta());
+		return "operaciones";
+	}
+		
+	public String ingreso() {
+		cajero.ingresar(login.getCuenta(), cantidad);
+		return "operaciones";
+	}
+	public String extraccion() {
+		cajero.extraer(login.getCuenta(), cantidad);
+		return "operaciones";
+	}
+	public String transferencia() {
+		cajero.transferir(login.getCuenta(), destino, cantidad);
+		return "operaciones";
+	}
 	
 	public ServicioCajero getCajero() {
 		return cajero;
@@ -43,18 +64,13 @@ public class OperacionesBean {
 
 	public void setLogin(LoginBean login) {
 		this.login = login;
+	}	
+
+	public int getCambioCuenta() {
+		return cambioCuenta;
 	}
-		
-	public String ingreso() {
-		cajero.ingresar(login.getCuenta(), cantidad);
-		return "operaciones";
-	}
-	public String extraccion() {
-		cajero.extraer(login.getCuenta(), cantidad);
-		return "operaciones";
-	}
-	public String transferencia() {
-		cajero.transferir(login.getCuenta(), destino, cantidad);
-		return "operaciones";
+
+	public void setCambioCuenta(int cambioCuenta) {
+		this.cambioCuenta = cambioCuenta;
 	}
 }

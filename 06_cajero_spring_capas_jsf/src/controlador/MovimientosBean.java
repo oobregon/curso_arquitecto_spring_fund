@@ -7,12 +7,13 @@ import javax.faces.bean.ManagedProperty;
 
 import model.Movimiento;
 import service.ServicioCajero;
+
 @ManagedBean
 public class MovimientosBean {
 	private double saldo;
 	private List<Movimiento> movimientos;
 	
-	@ManagedProperty("#{capasercajero}")
+	@ManagedProperty("#{capaservcajero}")
 	ServicioCajero cajero;
 	
 	@ManagedProperty("#{loginBean}")

@@ -1,12 +1,8 @@
 package daos;
 
 import java.util.List;
-
-import javax.ejb.Local;
-
 import model.Contacto;
 
-@Local
 public interface DaoContactos {
 	List<Contacto> dameContactos();
 	

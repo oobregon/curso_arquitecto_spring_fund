@@ -6,6 +6,8 @@
 
 <h:head></h:head> 
 <body> 
+	Cuenta seleccionada:<b><h:outputLabel value="#{loginBean.cuenta}" /></b><br/><br/>
+	<h:link value="Volver" outcome="operaciones"/>
 	<center>
 		<h1>Saldo: <h:outputText value="#{movimientosBean.saldo}" /></h1>
 		<br/><br/>
@@ -21,12 +23,8 @@
 			<h:column>
 				<f:facet name="header">Fecha</f:facet>
 				<h:outputText value="#{m.fecha}"/>
-			</h:column>
-		
-		</h:dataTable>
-	
-		<h:link value="volver" outcome="operaciones"/>
-	
+			</h:column>		
+		</h:dataTable>	
 	</center>
 </body> 
 </html>

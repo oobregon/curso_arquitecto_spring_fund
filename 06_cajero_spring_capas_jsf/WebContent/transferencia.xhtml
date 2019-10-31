@@ -8,11 +8,9 @@
 <body> 
 
 <h:form>
-	Cantidad: <h:inputText value="#{operaciones.cantidad}" /><br/><br/>
-	Destino: <h:inputText value="#{operaciones.destino}" /><br/><br/>
-	<h:commandButton action="#{operaciones.transferencia()}" value="Entrar" />
-
-
+	Cantidad: <h:inputText value="#{operacionesBean.cantidad}" /><br/><br/>
+	Destino: <h:inputText value="#{operacionesBean.destino}" /><br/><br/>
+	<h:commandButton action="#{operacionesBean.transferencia()}" value="Entrar" />
 </h:form>
 <br/><br/>
 

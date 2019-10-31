@@ -14,7 +14,7 @@ import model.Cliente;
 import model.Cuenta;
 import model.Movimiento;
 
-@Service (value = "capasercajero")
+@Service (value = "capaservcajero")
 public class ServicioCajeroImpl implements ServicioCajero {
 	// La capa de servicio no debe contener ninguna sentencia de acceso a datos, ninguna sentencia
 	// de persistencia (no jdbc, no jpa, no ds). La capa que conoce el acceso a datos es la capa Dao.
