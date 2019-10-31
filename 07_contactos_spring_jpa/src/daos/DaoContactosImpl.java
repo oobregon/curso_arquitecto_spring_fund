@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import model.Contacto;
 
@@ -27,12 +28,13 @@ public class DaoContactosImpl implements DaoContactos {
 		return (List<Contacto>)q.getResultList();
 	}
 
+	@Transactional
 	@Override
 	public void altaContactoParametrizado(Contacto contacto) {
 		em.persist(contacto);		
 	}
 	
-	
+	@Transactional
 	@Override
 	public void eliminarContacto(int idContacto) {	
 		em.remove(em.find(Contacto.class,idContacto));
