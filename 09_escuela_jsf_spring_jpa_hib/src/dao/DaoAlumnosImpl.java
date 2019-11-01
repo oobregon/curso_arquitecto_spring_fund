@@ -34,4 +34,9 @@ public class DaoAlumnosImpl implements DaoAlumnos {
 		Alumno alumno = em.find(Alumno.class,dni);
 		em.remove(alumno);
 	}
+
+	@Override
+	public Alumno findAlumnoByDni(int dni) {
+		return em.find(Alumno.class,dni);
+	}
 }
