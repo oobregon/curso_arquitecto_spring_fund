@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sun.istack.logging.Logger;
+
 import dao.DaoAlumnos;
 import dao.DaoCursos;
 import model.Alumno;
@@ -32,15 +34,26 @@ public class ServicioEscuelaImpl implements ServicioEscuela {
 	@Transactional
 	@Override
 	public void eliminarCurso(int idCurso) {		
-		List<Alumno> alumnos = daoAlum.findAlumnosByCurso(idCurso);
-		daoCur.removeCurso(idCurso);
+		List<Alumno> alumnos = daoAlum.findAlumnosByCurso(idCurso);		
 		for(Alumno al : alumnos) {
 			daoAlum.removeAlumno(al.getDni());
 		}
+		daoCur.removeCurso(idCurso);
+		System.out.println("Probando");
 	}
 
 	@Override
 	public List<Curso> filtrarCursosPorFecha(Date fecha) {
 		return daoCur.findAllCursosByFecha(fecha);
+	}
+
+	@Override
+	public List<Object[]> obtenerInfoTablaCursosPorFecha(Date fecha) {
+		return daoCur.obtenerCursosConteoAlumnos(fecha);
+	}
+
+	@Override
+	public List<Curso> findAllCursos() {
+		return daoCur.findAllCursos();
 	}
 }

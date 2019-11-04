@@ -29,7 +29,7 @@ public class Curso implements Serializable {
 
 	//bi-directional many-to-one association to Alumno
 	@OneToMany(mappedBy="curso")
-	private List<Alumno> alumnos;
+	private List<Alumno> alumnos;	
 
 	public Curso(int idCurso, String denominacion, int duracion, Date fechaInicio) {
 		super();
@@ -95,5 +95,4 @@ public class Curso implements Serializable {
 
 		return alumno;
 	}
-
 }

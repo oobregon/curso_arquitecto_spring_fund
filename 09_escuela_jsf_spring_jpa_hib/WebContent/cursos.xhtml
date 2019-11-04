@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+	<h:form id="hey">		
+		<h:commandButton action="#{cursosBean.verCursos()}" value="Ver cursos">
+			<f:ajax execute="@form" render="tdcursos"/>
+		</h:commandButton>        
+        <br/><br/>		                
+        <h:panelGroup id="tdcursos">		        	
+			<h:dataTable border="1" id="datos" var="curso" value="#{cursosBean.cursos}">
+				<h:column><f:facet name="header">Denominacion</f:facet>#{curso.denominacion}</h:column>
+				<h:column><f:facet name="header">Duración</f:facet>#{curso.duracion}</h:column>
+				<h:column><f:facet name="header">Fecha</f:facet>#{curso.fechaInicio}</h:column>								    
+				<h:column><f:facet name="header">Acción</f:facet><h:commandButton action="#{cursosBean.eliminarCurso()}"><f:ajax execute="@form" render=":hey:tdcursos"/>Eliminar</h:commandButton></h:column>
+		 	</h:dataTable>
+		 </h:panelGroup>		  	
+	 </h:form>         
+</body> 
+</html>

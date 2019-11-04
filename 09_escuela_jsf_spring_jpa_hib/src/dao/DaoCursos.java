@@ -8,5 +8,6 @@ import model.Curso;
 public interface DaoCursos {
 	List<Curso> findAllCursos();
 	List<Curso> findAllCursosByFecha(Date fecha);	
+	List<Object[]> obtenerCursosConteoAlumnos(Date fecha);
 	void removeCurso(int idCurso);
 }

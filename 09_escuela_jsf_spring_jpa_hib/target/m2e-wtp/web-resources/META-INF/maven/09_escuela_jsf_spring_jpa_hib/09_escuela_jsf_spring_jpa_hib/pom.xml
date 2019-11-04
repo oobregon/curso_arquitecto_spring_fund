@@ -59,5 +59,12 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.4.2.Final</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+	<dependency>
+	  <groupId>org.primefaces</groupId>
+		  <artifactId>primefaces</artifactId>
+		  <version>6.2</version>
+	</dependency>
   </dependencies>
 </project>

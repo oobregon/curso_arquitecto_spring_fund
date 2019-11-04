@@ -33,9 +33,22 @@ public class DaoCursosImpl implements DaoCursos {
 
 	@Override
 	public List<Curso> findAllCursosByFecha(Date fecha) {
-		String jpql = "select c from Curso c where c.fechaInicio >= ?1";
+		String jpql = "select c from Curso c where c.fechaInicio >= ?1";		
 		Query q = em.createQuery(jpql);
 		q.setParameter(1,fecha);
-		return (List<Curso>)q.getResultList();
+		List<Curso> lista = (List<Curso>)q.getResultList();
+		return lista;
+	}
+
+	@Override
+	public List<Object[]> obtenerCursosConteoAlumnos(Date fecha) {
+		List<Object[]> cursosConteoAlum;
+		String jpql = "select c.idCurso,c.denominacion,c.duracion,c.fechaInicio,count(a.dni) as num_alumnos from Curso c "
+				    + "left join Alumno a on c.idCurso =  a.curso.idCurso where c.fechaInicio >= ?1 "
+				    + "group by c.idCurso,c.denominacion,c.duracion,c.fechaInicio";
+		Query q = em.createQuery(jpql);
+		q.setParameter(1,fecha);
+		cursosConteoAlum = q .getResultList();
+		return cursosConteoAlum;
 	}	
 }
