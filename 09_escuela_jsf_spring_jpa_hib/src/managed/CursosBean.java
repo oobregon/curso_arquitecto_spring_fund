@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import model.Curso;
 import servicio.ServicioEscuela;
 
 @ManagedBean(name = "cursosBean")
-@RequestScoped
+@ViewScoped
 public class CursosBean {
 	private Date fechaInicio;
 	private List<Curso> cursos;
@@ -21,8 +21,8 @@ public class CursosBean {
 	ServicioEscuela capaServ;
 	
 	private void cargarCursos() {
-		setCursos(capaServ.findAllCursos());
-		//setInfoCursos(capaServ.obtenerInfoTablaCursosPorFecha(getFechaInicio()));
+		//setCursos(capaServ.findAllCursos());
+		setInfoCursos(capaServ.obtenerInfoTablaCursosPorFecha(getFechaInicio()));
 	}
 	
 	public void verCursos() {				
@@ -31,11 +31,6 @@ public class CursosBean {
 	
 	public void eliminarCurso(int idCurso) {				
 		capaServ.eliminarCurso(idCurso);
-		this.cargarCursos();
-	}
-	
-	public void eliminarCurso() {				
-		capaServ.eliminarCurso(12);
 		this.cargarCursos();
 	}
 	

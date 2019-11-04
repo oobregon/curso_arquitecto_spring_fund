@@ -53,7 +53,17 @@ public class ServicioEscuelaImpl implements ServicioEscuela {
 	}
 
 	@Override
-	public List<Curso> findAllCursos() {
+	public List<Curso> obtenerTodosCursos() {
 		return daoCur.findAllCursos();
+	}
+
+	@Override
+	public Curso obtenerCursoPorId(int idCurso) {
+		return daoCur.findCursoById(idCurso);
+	}
+
+	@Override
+	public void registrarCurso(Curso curso) {
+		daoCur.persistByEntity(curso);
 	}
 }

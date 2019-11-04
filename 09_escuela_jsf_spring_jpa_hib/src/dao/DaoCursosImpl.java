@@ -50,5 +50,16 @@ public class DaoCursosImpl implements DaoCursos {
 		q.setParameter(1,fecha);
 		cursosConteoAlum = q .getResultList();
 		return cursosConteoAlum;
+	}
+
+	@Override
+	public Curso findCursoById(int idCurso) {
+		return em.find(Curso.class,idCurso);
+	}
+
+	@Transactional
+	@Override
+	public void persistByEntity(Curso curso) {		
+		em.persist(curso);		
 	}	
 }

@@ -2,23 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head></h:head> 
 <body> 
-	<h:form id="hey">		
-		<h:commandButton action="#{cursosBean.verCursos()}" value="Ver cursos">
-			<f:ajax execute="@form" render="tdcursos"/>
-		</h:commandButton>        
-        <br/><br/>		                
+	<h:form id="formCursos">
+		<p:outputLabel for="fini" value="Fecha inicial:" />
+        <p:calendar id="fini" value="#{cursosBean.fechaInicio}" showOn="button" />
+        <br/><br/>
+        <p:commandButton value="Volver" action="inicio" />
+        <p:commandButton value="Ver cursos" update="tdcursos" action="#{cursosBean.verCursos()}" />        
+        <br/><br/>		        
         <h:panelGroup id="tdcursos">		        	
-			<h:dataTable border="1" id="datos" var="curso" value="#{cursosBean.cursos}">
-				<h:column><f:facet name="header">Denominacion</f:facet>#{curso.denominacion}</h:column>
-				<h:column><f:facet name="header">Duración</f:facet>#{curso.duracion}</h:column>
-				<h:column><f:facet name="header">Fecha</f:facet>#{curso.fechaInicio}</h:column>								    
-				<h:column><f:facet name="header">Acción</f:facet><h:commandButton action="#{cursosBean.eliminarCurso()}"><f:ajax execute="@form" render=":hey:tdcursos"/>Eliminar</h:commandButton></h:column>
-		 	</h:dataTable>
-		 </h:panelGroup>		  	
+			<p:dataTable border="1" var="curso" value="#{cursosBean.infoCursos}"
+						     scrollable="true" scrollHeight="300">
+				<p:column headerText="Denominación"><h:outputText value="${curso[1]}"/></p:column>
+				<p:column headerText="Duración"><h:outputText value="${curso[2]}"/></p:column>				     
+				<p:column headerText="Fecha"><h:outputText value="${curso[3]}"/></p:column>											
+				<p:column headerText="Total alumnos"><h:outputText value="${curso[4]}"/></p:column>
+				<p:column headerText="Acción"><p:commandLink value="Eliminar curso"  action="#{cursosBean.eliminarCurso(curso[0])}" update=":formCursos:tdcursos" />												
+				</p:column>
+		 	</p:dataTable>
+		 </h:panelGroup>
+		 <p:commandButton value="Nuevo curso" action="altaCurso" />		  	
 	 </h:form>         
 </body> 
 </html>
