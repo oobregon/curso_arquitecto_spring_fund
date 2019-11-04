@@ -42,5 +42,10 @@
 		type="javax.sql.DataSource" 
 		name="refcontactos" 
 		global="jdbc/contactosds"/>
+
+	<ResourceLink 
+		type="javax.sql.DataSource" 
+		name="refescuela" 
+		global="jdbc/escuelads"/>					
     	
 </Context>

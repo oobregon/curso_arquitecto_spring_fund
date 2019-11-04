@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import dto.CursoView;
 import model.Curso;
 import servicio.ServicioEscuela;
 
@@ -14,15 +15,13 @@ import servicio.ServicioEscuela;
 @ViewScoped
 public class CursosBean {
 	private Date fechaInicio;
-	private List<Curso> cursos;
-	private List<Object[]> infoCursos;
+	private List<CursoView> listaCursos;
 	
 	@ManagedProperty("#{capaServEscuela}")
 	ServicioEscuela capaServ;
 	
 	private void cargarCursos() {
-		//setCursos(capaServ.findAllCursos());
-		setInfoCursos(capaServ.obtenerInfoTablaCursosPorFecha(getFechaInicio()));
+		setListaCursos(getCapaServ().obtenerCursosFecha(getFechaInicio()));
 	}
 	
 	public void verCursos() {				
@@ -37,15 +36,10 @@ public class CursosBean {
 	public Date getFechaInicio() {
 		return fechaInicio;
 	}
+	
 	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
-	}
-	public List<Curso> getCursos() {
-		return cursos;
-	}
-	public void setCursos(List<Curso> cursos) {
-		this.cursos = cursos;
-	}
+	}	
 
 	public ServicioEscuela getCapaServ() {
 		return capaServ;
@@ -55,11 +49,11 @@ public class CursosBean {
 		this.capaServ = capaServ;
 	}
 
-	public List<Object[]> getInfoCursos() {
-		return infoCursos;
+	public List<CursoView> getListaCursos() {
+		return listaCursos;
 	}
 
-	public void setInfoCursos(List<Object[]> infoCursos) {
-		this.infoCursos = infoCursos;
+	public void setListaCursos(List<CursoView> listaCursos) {
+		this.listaCursos = listaCursos;
 	}
 }

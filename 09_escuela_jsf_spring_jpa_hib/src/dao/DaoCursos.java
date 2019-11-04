@@ -10,6 +10,7 @@ public interface DaoCursos {
 	List<Curso> findAllCursosByFecha(Date fecha);
 	Curso findCursoById(int idCurso);
 	List<Object[]> obtenerCursosConteoAlumnos(Date fecha);
+	public int findNumAlumnosByCurso(int idCurso);
 	void removeCurso(int idCurso);
 	void persistByEntity(Curso curso);
 }

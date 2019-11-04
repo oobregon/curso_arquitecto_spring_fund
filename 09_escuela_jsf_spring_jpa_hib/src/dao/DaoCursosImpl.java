@@ -51,6 +51,7 @@ public class DaoCursosImpl implements DaoCursos {
 		cursosConteoAlum = q .getResultList();
 		return cursosConteoAlum;
 	}
+	
 
 	@Override
 	public Curso findCursoById(int idCurso) {
@@ -61,5 +62,11 @@ public class DaoCursosImpl implements DaoCursos {
 	@Override
 	public void persistByEntity(Curso curso) {		
 		em.persist(curso);		
+	}
+
+	@Override
+	public int findNumAlumnosByCurso(int idCurso) {
+		Curso curso = em.find(Curso.class,idCurso);
+		return curso.getAlumnos().size();
 	}	
 }
