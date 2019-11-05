@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import model.Curso;
 
-public interface DaoCursos extends JpaRepository<Curso,Integer> {	
+public interface DaoCursos extends JpaRepository<Curso,Integer> {
+	
 	// findByFechaInicio sí lo proporciona jpaRepository (porque sigue la convención findByNombredePropiedadDelBean), 
 	// pero la implementación de Spring de éste método busca por igualdad, por lo tanto no nos vale porque
 	// la lógica de negocio de nuestra aplicación requiere búsqueda por mayor o igual. En consecuencia, tenemos que 
@@ -14,4 +15,8 @@ public interface DaoCursos extends JpaRepository<Curso,Integer> {
 	// a este método:	
 	@Query("select c from Curso c where c.fechaInicio >= ?1")
 	List<Curso> findByFechaInicio(Date fecha);
+	
+	
+	@Query(name = "Curso.nombreConsulta")
+	void consultaNamedQuery(String param);
 }
