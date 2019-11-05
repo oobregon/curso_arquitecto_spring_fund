@@ -12,15 +12,15 @@
         <p:calendar id="fini" value="#{cursosBean.fechaInicio}" showOn="button" />
         <br/><br/>
         <p:commandButton value="Volver" action="inicio" />
-        <p:commandButton value="Ver cursos" update="tdcursos" action="#{cursosBean.listaCursos}" />        
+        <p:commandButton value="Ver cursos" update="tdcursos" action="#{cursosBean.verCursos()}" />        
         <br/><br/>		        
         <h:panelGroup id="tdcursos">		        	
-			<p:dataTable border="1" var="curso" value="#{cursosBean.listaCursos}" scrollable="true" scrollHeight="300">
-				<p:column headerText="Denominación"><h:outputText value="#{curso.}"/></p:column>
-				<p:column headerText="Duración"><h:outputText value="${curso[2]}"/></p:column>				     
-				<p:column headerText="Fecha"><h:outputText value="${curso[3]}"/></p:column>											
-				<p:column headerText="Total alumnos"><h:outputText value="${curso[4]}"/></p:column>
-				<p:column headerText="Acción"><p:commandLink value="Eliminar curso"  action="#{cursosBean.eliminarCurso(curso[0])}" update=":formCursos:tdcursos" />												
+			<p:dataTable border="1" var="cur" value="#{cursosBean.listaCursos}" scrollable="true" scrollHeight="300">
+				<p:column headerText="Denominación"><h:outputText value="#{cur.curso.denominacion}"/></p:column>
+				<p:column headerText="Duración"><h:outputText value="${cur.curso.duracion}"/></p:column>				     
+				<p:column headerText="Fecha"><h:outputText value="${cur.curso.fechaInicio}"/></p:column>											
+				<p:column headerText="Total alumnos"><h:outputText value="${cur.numAlumnos}"/></p:column>
+				<p:column headerText="Acción"><p:commandLink value="Eliminar curso"  action="#{cursosBean.eliminarCurso(cur.curso.idCurso)}" update=":formCursos:tdcursos" />												
 				</p:column>
 		 	</p:dataTable>
 		 </h:panelGroup>

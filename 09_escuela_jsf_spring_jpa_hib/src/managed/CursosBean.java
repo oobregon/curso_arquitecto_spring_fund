@@ -8,7 +8,6 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 import dto.CursoView;
-import model.Curso;
 import servicio.ServicioEscuela;
 
 @ManagedBean(name = "cursosBean")
