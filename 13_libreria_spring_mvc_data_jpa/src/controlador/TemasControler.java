@@ -7,21 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import daos.DaoTemas;
 import model.Tema;
-import spdatajpa.DaoLibros;
+import servicio.CapaServicio;
 
 @Controller
 public class TemasControler {
 	@Autowired
-	DaoTemas daoTemas;
-		
-	@Autowired
-	DaoLibros daoLibros;
+	CapaServicio serv;
 	
 	@GetMapping(value="aTemas" )
 	public String iniciar(Model model) {
-		List<Tema> temas = daoTemas.obtenerTemas();
+		List<Tema> temas = serv.obtenerTemas();
 		Tema tema = new Tema();
 		model.addAttribute("temas",temas);		
 		model.addAttribute("tema",tema);

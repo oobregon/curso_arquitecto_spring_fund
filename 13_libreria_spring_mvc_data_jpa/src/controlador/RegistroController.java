@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import model.Cliente;
-import spdatajpa.DaoClientes;
+import servicio.CapaServicio;
 
 @Controller
 public class RegistroController {
 	@Autowired
-	DaoClientes daoCliente;
+	CapaServicio serv;
 	
 	// Model es un objeto de Spring en el que guardar cosa, pero su ámbito es mayor que el de Petición pero menor que el de sesión 
 	// Antes de llegar a la pagina registro, creamos un objeto Cliente vacío.
@@ -29,7 +29,7 @@ public class RegistroController {
 	// Este 
 	@PostMapping (value = "/registrar")
 	public String registrar(@ModelAttribute("cliente") Cliente cliente) {		
-		daoCliente.save(cliente);
+		serv.registrar(cliente);
 		return "login";
 	}
 }
