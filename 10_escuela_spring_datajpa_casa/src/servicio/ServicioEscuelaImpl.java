@@ -25,9 +25,9 @@ public class ServicioEscuelaImpl implements ServicioEscuela {
 	@Override
 	public void matricular(Alumno alumno,int idCurso) {		
 		if (!daoAlum.existsById(alumno.getDni())) {
-			Curso curso = this.obtenerCursoPorId(idCurso);
+			Curso curso = this.obtenerCursoPorId(idCurso);			
 			alumno.setCurso(curso);
-			daoAlum.save(alumno);
+			daoAlum.save(alumno);			
 		}
 	}
 

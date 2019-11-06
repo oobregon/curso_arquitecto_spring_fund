@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import daos.DaoClientes;
 import model.Cliente;
+import spdatajpa.DaoClientes;
 
 @Controller
 public class RegistroController {
@@ -29,7 +29,7 @@ public class RegistroController {
 	// Este 
 	@PostMapping (value = "/registrar")
 	public String registrar(@ModelAttribute("cliente") Cliente cliente) {		
-		daoCliente.registrar(cliente);
+		daoCliente.save(cliente);
 		return "login";
 	}
 }

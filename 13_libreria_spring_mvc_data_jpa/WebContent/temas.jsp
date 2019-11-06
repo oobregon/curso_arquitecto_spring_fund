@@ -31,6 +31,6 @@
 	</f:select><br/><br/>
 	<button type="submit">Ver libros</button>
 	</f:form>
-	<a href="toLogin">Volver</a>
+	<a href="aBienVenida">Menu</a>
 </body>
 </html>

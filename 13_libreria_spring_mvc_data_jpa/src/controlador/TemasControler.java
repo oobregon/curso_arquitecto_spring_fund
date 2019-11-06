@@ -7,9 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import daos.DaoLibros;
 import daos.DaoTemas;
 import model.Tema;
+import spdatajpa.DaoLibros;
 
 @Controller
 public class TemasControler {

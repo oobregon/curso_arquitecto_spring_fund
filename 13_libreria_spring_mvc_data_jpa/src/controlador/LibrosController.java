@@ -8,20 +8,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import daos.DaoLibros;
 import model.Libro;
 import model.Tema;
+import servicio.CapaServicio;
+import spdatajpa.DaoLibros;
 
 @Controller
 public class LibrosController {
 	
 	@Autowired
-	DaoLibros daoLibros;
+	CapaServicio serv;
 	
 	@PostMapping (value = "/obtenerListaLibros")
 	public String prepararListaLibros(@ModelAttribute("tema") Tema tema,Model model) {	
 		model.addAttribute("tema",tema);
-		List<Libro> libros = daoLibros.obtenerLibrosPorTema(tema.getIdTema());
+		List<Libro> libros = serv.obtenerLibrosPorTema(tema.getIdTema());
 		model.addAttribute("libros",libros);
 		return "libros"; 
 	}

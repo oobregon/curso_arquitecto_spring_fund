@@ -8,10 +8,10 @@
 </head>
 <body>
 	
-	<h1>Bienvenido:${param.user}</h1>
+	<h1>Bienvenido:${sessionScope.clienteLogado.usuario}</h1>
 	<br/><br/>
-	<a href="toLogin">volver</a>
-	<a href="aTemas">Ver temas</a>
-	<a href="aVentas">Ver ventas</a>
+	<a href="toLogin">volver</a><br/>
+	<a href="aTemas">Ver temas</a><br/>
+	<a href="aVentas">Ver ventas</a><br/>
 </body>
 </html>
