@@ -13,6 +13,5 @@ public interface CapaServicio {
 	public List<Libro> obtenerLibrosPorTema(int idTema);
 	public void registrar(Cliente cliente);
 	public List<Tema> obtenerTemas();
-	public List<Venta> obtenerVentasCliente(int idCliente);
-	public List<Venta> obtenerVentasLibro(int isbn);
+	public List<Venta> obtenerVentasCliente(int idCliente);	
 }

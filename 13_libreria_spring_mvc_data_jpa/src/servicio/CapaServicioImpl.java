@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import daos.DaoVentas;
 import model.Cliente;
 import model.Libro;
 import model.Tema;
@@ -13,6 +12,7 @@ import model.Venta;
 import spdatajpa.DaoClientes;
 import spdatajpa.DaoLibros;
 import spdatajpa.DaoTemas;
+import spdatajpa.DaoVentas;
 
 @Service (value = "capaServ")
 public class CapaServicioImpl implements CapaServicio {
@@ -35,12 +35,17 @@ public class CapaServicioImpl implements CapaServicio {
 
 	@Override
 	public Cliente obtenerCliente(String usuario, String contra) {
-		return daoCli.obtenerCliente(usuario, contra);
+		return daoCli.findByUsuarioAndPassword(usuario, contra);
 	}
 
 	@Override
 	public List<Libro> obtenerLibrosPorTema(int idTema) {
-		return idTema==0?daoLib.findAll():daoLib.findLibroByTema(idTema);
+		if(idTema == 0) {
+			return daoLib.findAll();
+		} else {
+			Tema tema = daoTem.getOne(idTema);
+			return daoLib.findAllByTema(tema);
+		}		
 	}
 
 	@Override
@@ -54,14 +59,8 @@ public class CapaServicioImpl implements CapaServicio {
 	}
 
 	@Override
-	public List<Venta> obtenerVentasCliente(int idCliente) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Venta> obtenerVentasCliente(int idCliente) {		
+		Cliente cliente = daoCli.getOne(idCliente);
+		return daoVen.findAllByCliente(cliente);
 	}
-
-	@Override
-	public List<Venta> obtenerVentasLibro(int isbn) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
 }

@@ -15,7 +15,8 @@ public class RegistroController {
 	@Autowired
 	CapaServicio serv;
 	
-	// Model es un objeto de Spring en el que guardar cosa, pero su ámbito es mayor que el de Petición pero menor que el de sesión 
+	// Model es un objeto de Spring en el que guardar los JavaBeans en los que volcamos los datos de un formulario.
+	// pero su ámbito es mayor que el de Petición pero menor que el de sesión 
 	// Antes de llegar a la pagina registro, creamos un objeto Cliente vacío.
 	// Este metodo se ejecuta cuando se pulsa el hipervinculo que nos lleva a la pagina registro.
 	// Prepara el objeto Cliente. Este metodo se ejecuta antes de que se cargue el formulario a donde se dirige, en este caso registro

@@ -22,9 +22,9 @@ public class LoginController {
 	// @PostMapping: Esto signfica que este método esta asociado a una petición POST
 	@PostMapping (value = "/login")
 	public String login(@RequestParam("user") String usuario,
-						@RequestParam("pwd") String contra,HttpSession sesion) {		
-		if (serv.estaRegistrado(usuario,contra)) {
-			Cliente cliLogado = serv.obtenerCliente(usuario,contra);
+						@RequestParam("pwd") String contra,HttpSession sesion) {
+		Cliente cliLogado = serv.obtenerCliente(usuario,contra);
+		if (cliLogado != null) {			
 			sesion.setAttribute("clienteLogado",cliLogado);			
 			return "bienvenida";
 		} else {
