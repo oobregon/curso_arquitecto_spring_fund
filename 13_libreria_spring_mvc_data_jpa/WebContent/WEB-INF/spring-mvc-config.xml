@@ -17,4 +17,5 @@
 	
 	<!-- Controladores de accion para navegacion estatica. Configuracion de la navegacion estática -->
 	<mvc:view-controller path="toLogin" view-name="login"/>
+	<mvc:view-controller path="aBienVenida" view-name="bienvenida"/>	
 </beans>

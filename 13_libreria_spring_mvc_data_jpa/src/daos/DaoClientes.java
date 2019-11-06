@@ -1,6 +1,7 @@
 package daos;
 
 import java.util.List;
+
 import model.Cliente;
 
 public interface DaoClientes {

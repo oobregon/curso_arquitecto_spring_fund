@@ -47,4 +47,5 @@
 		type="javax.sql.DataSource" 
 		name="refescuela" 
 		global="jdbc/escuelads"/>
+    
 </Context>

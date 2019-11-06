@@ -41,6 +41,7 @@
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/libreriads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/libros" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/bancods" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/bancabd" username="root"/>
     <Resource driverClassName="com.mysql.jdbc.Driver" name="jdbc/contactosds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/agenda2" username="root"/>
+    
   </GlobalNamingResources>
 
   <!-- A "Service" is a collection of one or more "Connectors" that share
@@ -153,7 +154,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="08_libreria_jsf_a_jsf_spring_jpa_hib" path="/08_libreria_jsf_a_jsf_spring_jpa_hib" reloadable="true" source="org.eclipse.jst.jee.server:08_libreria_jsf_a_jsf_spring_jpa_hib"/></Host>
+      <Context docBase="13_libreria_spring_mvc_data_jpa" path="/13_libreria_spring_mvc_data_jpa" reloadable="true" source="org.eclipse.jst.jee.server:13_libreria_spring_mvc_data_jpa"/></Host>
     </Engine>
   </Service>
 </Server>

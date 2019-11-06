@@ -11,6 +11,7 @@
 	<h1>Bienvenido:${param.user}</h1>
 	<br/><br/>
 	<a href="toLogin">volver</a>
-	<a href="aTemas">volver</a>
+	<a href="aTemas">Ver temas</a>
+	<a href="aVentas">Ver ventas</a>
 </body>
 </html>
