@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:http>
+		<!-- mecanismo de autenticacion -->
+		<!--  recordemos: basico, formulario, certificado, ... -->
+		<security:http-basic/>
+		
+		<!-- Proteccion de recursos (urls a controllers y urls, a paginas) -->
+		<security:intercept-url pattern="/bienvenida.jsp" access="ROLE_USER,ROLE_ADMIN"/>
+		<security:intercept-url pattern="/aVentas" access="ROLE_USER,ROLE_ADMIN"/>		
+	</security:http>
+	
+	<!-- A este objeto de spring le tenemos que decir de dónde salen los usuarios que van a usar esta app -->
+	<!-- Opciones: poner los usuarios en este mismo fichero de configuracion, mediante un fichero de propiedades (usuario/contraseña),
+	               usuarios en una BD, usuarios en un LDAP -->
+	<security:authentication-manager>		
+		<security:authentication-provider>
+			
+			<!--  Opcion 1 -->
+			<security:user-service>
+				<security:user name="user1" password="user1" authorities="ROLE_USER"/>
+				<security:user name="user2" password="user2" authorities="ROLE_USER,ROLE_ADMIN"/>
+			</security:user-service>
+			
+			<!--  Opcion 2. Usuarios en fichero de propiedades 
+			<security:user-service properties="/WEB-INF/usuarios.properties" />
+			-->
+			
+			<!--  Opcion 3. Usuarios en una BD 
+			<security:jdbc-user-service data-source-ref="dataUsers" 
+										users-by-username-query="select user,contra,enabled from user where user=?"
+										authorities-by-username-query="select user,auth from roles where user=?"/>
+	        -->									
+										
+			<!--  Opcion 4. LDAP. Base de datos jerárquica para indicar usuarios sus contraseñas; es como un sistema de directorios. 
+			      En estas bases de datos el acceso es muy rápido, por eso se usan 
+			<security:ldap-user-service server-ref="sldap"/>					
+			-->					
+			
+		</security:authentication-provider>	
+	</security:authentication-manager>
+	<security:ldap-server id="sldap" url="ldap://localhost:339" manager-dn="admin" manager-password="admin" />
+
+</beans>
