@@ -13,10 +13,12 @@
 	<context:component-scan base-package="dao,service" />	
 	<jee:jndi-lookup jndi-name="refbanco" id="dsServidor"/>
 	
+	<!-- Configuracion spring dao -->
 	<bean id="template"
 		class="org.springframework.jdbc.core.JdbcTemplate">
 		<constructor-arg ref="dsServidor"></constructor-arg>
 	</bean>	
+	
 	<bean id="gestorTxt"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property ref="dsServidor" name="dataSource"></property>
