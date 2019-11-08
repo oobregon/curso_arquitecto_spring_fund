@@ -2,6 +2,7 @@ package service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,9 @@ public class ServicioCajeroImpl implements ServicioCajero {
 
 	@Override
 	public Cuenta obtenerCuenta(int numCuenta) {
-		return daoCuentas.getOne(numCuenta);
+		Optional<Cuenta> optCuenta = daoCuentas.findById(numCuenta);
+		return optCuenta.isPresent()?optCuenta.get():null;
+		
 	}
 
 	@Transactional

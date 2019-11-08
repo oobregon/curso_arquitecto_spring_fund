@@ -19,17 +19,10 @@
 	<h1>Autenticación</h1>
 	<form action="login" method="post">
 		<div class="form-group">
-			<label>Usuario:</label><input type="text" name="user" class="form-control" style="width:30%" placeholder="Usuario" autocomplete="name"/>
-		</div>
-		<div class="form-group">
-			<label>Password:</label><input type="password" name="pwd" class="form-control" style="width:30%" placeholder="Contraseña"/>
-		</div>
-		
-		<button type="submit" class="btn btn-default">Enviar</button>
-		
-	</form>
-	<br/><br/>
-	<a href="toRegistro">Registrese</a>
+			<label>Número de cuenta:</label><input type="text" name="numCuenta" class="form-control" style="width:30%" />
+		</div><br/>				
+		<button type="submit" class="btn btn-default">Enviar</button>		
+	</form>	
 </div>
 </body>
 </html>

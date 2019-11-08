@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,20 +16,12 @@
 </head>
 <body>
 <div class="container">
-	<h1>Autenticación</h1>
-	<form action="login" method="post">
-		<div class="form-group">
-			<label>Usuario:</label><input type="text" name="user" class="form-control" style="width:30%" placeholder="Usuario" autocomplete="name"/>
-		</div>
-		<div class="form-group">
-			<label>Password:</label><input type="password" name="pwd" class="form-control" style="width:30%" placeholder="Contraseña"/>
-		</div>
-		
-		<button type="submit" class="btn btn-default">Enviar</button>
-		
-	</form>
-	<br/><br/>
-	<a href="toRegistro">Registrese</a>
+	<h1>Cuenta:${sessionScope.cuentaAutenticada.numeroCuenta}</h1>
+	<h5>(Saldo:${sessionScope.cuentaAutenticada.saldo})</h5><br/>
+	<h1>Operaciones</h1>
+	<div class="form-group">		
+		<a href="aTransferencia">Realizar transferencia</a><br/>
+	</div>			
 </div>
 </body>
 </html>
