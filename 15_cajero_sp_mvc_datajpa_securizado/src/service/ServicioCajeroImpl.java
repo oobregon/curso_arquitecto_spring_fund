@@ -37,9 +37,8 @@ public class ServicioCajeroImpl implements ServicioCajero {
 
 	@Override
 	public Cuenta obtenerCuenta(int numCuenta) {
-		Optional<Cuenta> optCuenta = daoCuentas.findById(numCuenta);
-		return optCuenta.isPresent()?optCuenta.get():null;
-		
+		Optional<Cuenta> optCuenta = daoCuentas.findById(numCuenta);		
+		return optCuenta.isPresent()?optCuenta.get():null;		
 	}
 
 	@Transactional

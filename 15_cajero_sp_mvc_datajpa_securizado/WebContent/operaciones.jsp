@@ -20,6 +20,7 @@
 	<h5>(Saldo:${sessionScope.cuentaAutenticada.saldo})</h5><br/>
 	<h1>Operaciones</h1>
 	<div class="form-group">		
+		<a href="aIngreso">Realizar ingreso</a><br/>
 		<a href="aTransferencia">Realizar transferencia</a><br/>
 	</div>			
 </div>

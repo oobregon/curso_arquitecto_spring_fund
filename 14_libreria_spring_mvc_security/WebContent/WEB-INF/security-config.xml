@@ -18,9 +18,14 @@
 		<security:intercept-url pattern="/bienvenida.jsp" access="ROLE_USER,ROLE_ADMIN"/>
 		<security:intercept-url pattern="/aVentas" access="ROLE_ADMIN"/>	
 		
-		<security:csrf disabled="true" />
-			
+		<!-- Generalmente, cuando un usuario se autentica , se le crea un token, y con este  la app ya le reconoce en cada pagina. Esto es en entornos profesionales 
+		Pero claro, en esta app nuestra no hay creacion de token, por lo tanto, una vez que nos autenticamos, al navegar a la siguiente pagina
+		se olvida de nosotros, entonces si tuiveramos dichas paginas protegidas nos estaria solicitando la autenticacion. Para evitar que nos esté 
+		pidiendo la autenticacion en cada pagina, lo deshabilitamos -->
+		<security:csrf disabled="true" />			
 	</security:http>
+	
+	<!--  ############################################################################################################################# -->
 	
 	<!-- A este objeto de spring le tenemos que decir de dónde salen los usuarios que van a usar esta app -->
 	<!-- Opciones: poner los usuarios en este mismo fichero de configuracion, mediante un fichero de propiedades (usuario/contraseña),
@@ -28,7 +33,7 @@
 	<security:authentication-manager>		
 		<security:authentication-provider>	
 			<!--  Mecanismo de encriptacion -->		
-			<!-- <security:password-encoder hash="sha"/>  -->
+			<!-- <security:password-encoder hash="bcrypt"/>  -->   
 					
 			<!--  Opcion 1 -->
 			<security:user-service>
@@ -53,6 +58,8 @@
 			
 		</security:authentication-provider>	
 	</security:authentication-manager>
+	
+	<!--  ############################################################################################################################# -->
+	
 	<security:ldap-server id="sldap" url="ldap://localhost:339" manager-dn="admin" manager-password="admin" />
-
 </beans>
