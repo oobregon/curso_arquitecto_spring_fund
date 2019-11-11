@@ -18,6 +18,7 @@ public class CajeroAdvice {
 	
 	@After (value = "execution(* service.ServiceCajero.ingreso(..))")
 	public void registroIngresos(JoinPoint jp) {
+		System.out.println("Dentro @After:");
 		ingresos++;
 		System.out.println("Numero de ingresos totales:" +  ingresos + " ultimo a las " + new Date() );
 	}
@@ -25,6 +26,7 @@ public class CajeroAdvice {
 	@Before (value = "execution(* service.ServiceCajero.extraccion(..))")
 	public void registroExtracciones(JoinPoint jp) {
 		double cantidad = (Double)jp.getArgs()[1];
+		System.out.println("Dentro @Before:");
 		extracciones++;
 		System.out.println("Numero de extracciones totales:" +  extracciones + " ultimo a las " + new Date() + " por una cantidad de: " + cantidad );
 	}
@@ -35,10 +37,12 @@ public class CajeroAdvice {
 	@Around (value = "execution(* service.ServiceCajero.extraccion(..))")
 	public void registroControlExtraccion(ProceedingJoinPoint pjp) throws Throwable {
 		double cantidad = (Double)pjp.getArgs()[1];
+		System.out.println("Dentro @Around:");
 		if (cantidad <= 1000) {
 			pjp.proceed();
 		} else {
 			System.out.println("¡¡¡¡¡ Limite excedido !!!!!");
+			throw new Throwable("Extracción solicitada supera el límite.");
 		}
 		extracciones++;
 		System.out.println("Numero de extracciones totales:" +  extracciones + " ultimo a las " + new Date() + " por una cantidad de: " + cantidad );

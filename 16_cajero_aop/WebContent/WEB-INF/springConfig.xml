@@ -15,11 +15,15 @@
 	<context:annotation-config/>
 	<aop:aspectj-autoproxy />
 	
-	<jee:jndi-lookup jndi-name="refcuentas" id="dataServer"/>
+	<jee:jndi-lookup jndi-name="refbanco" id="dataServer"/>
+	
+	<!-- Datasource para la BD que almacena los usuarios y los roles para la securizacion 
 	<jee:jndi-lookup jndi-name="refseguridad" id="dataSec"/>	
+	-->
+	
 	<context:component-scan base-package="service,aspectos"/>
-	<jpa:repositories base-package="dao" transaction-manager-ref="txManager"
-										entity-manager-factory-ref="factory"/>
+	<jpa:repositories base-package="dao" transaction-manager-ref="txManager" entity-manager-factory-ref="factory"/>
+	
 	<!-- configuración integración Spring-JPA-Hibernate -->
 	<!-- creación adaptador JPA-Hibernate -->
 	<bean id="adapter"
@@ -32,7 +36,7 @@
 	<!-- configuración JPA -->
 	<bean id="factory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="cajeroPU"></property>
+		<property name="persistenceUnitName" value="UPcajero"></property>
 		<property name="dataSource" ref="dataServer"></property>
 		<property name="jpaVendorAdapter" ref="adapter"></property>
 		<property name="packagesToScan" value="model"></property>

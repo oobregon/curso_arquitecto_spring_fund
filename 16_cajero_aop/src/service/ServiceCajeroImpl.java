@@ -35,7 +35,7 @@ public class ServiceCajeroImpl implements ServiceCajero {
 			daoCuentas.save(cuenta);
 			Movimiento m=new Movimiento(0,cantidad,new Date(),"extracción",cuenta);
 			daoMovimientos.save(m);
-		}else {
+		} else {
 			throw new RuntimeException();
 		}
 		
