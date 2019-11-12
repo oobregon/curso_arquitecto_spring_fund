@@ -21,40 +21,40 @@
 <div class="container">
 	<h1>Libros por tema</h1>
 	<f:form action="obtenerListaLibros" method="post" modelAttribute="Tema">
-	<div class="form-group">
-		<f:select path="idTema" class="form-control" style="width:20%">
-			<f:option value="0" label="-Todos-"/>
-			<f:options items="${temas}" itemValue="idTema" itemLabel="tema" />
-		</f:select>
-	</div>
-	<button type="submit" class="btn btn-default">Ver libros</button><br/>
-	<div class="form-group">
-	<c:choose>
-		<c:when test="${not empty libros}">
-			<table border=1>
-					<tr>
-						<td>Isbn</td>
-						<td>Titulo</td>
-						<td>Autor</td>
-						<td>Precio</td>
-						<td>Paginas</td>			
-					</tr>
-					<c:forEach var="libro" items="${libros}">				
-					<tr>
-						<td>${libro.isbn}</td>
-						<td>${libro.titulo}</td>	
-						<td>${libro.autor}</td>
-						<td>${libro.precio}</td>
-						<td>${libro.paginas}</td>											
-					</tr>			
-					</c:forEach>
-			</table>
-		</c:when>
-		<c:otherwise>
-			<h3 >Sin Libros</h3>
-		</c:otherwise>		
-	</c:choose>
-	</div>
+		<div class="form-group">
+			<f:select path="idTema" class="form-control" style="width:20%">
+				<f:option value="0" label="-Todos-"/>
+				<f:options items="${temas}" itemValue="idTema" itemLabel="tema" />
+			</f:select>
+		</div>
+		<button type="submit" class="btn btn-default">Ver libros</button><br/>
+		<div class="form-group">
+		<c:choose>
+			<c:when test="${not empty libros}">
+				<table border=1>
+						<tr>
+							<td>Isbn</td>
+							<td>Titulo</td>
+							<td>Autor</td>
+							<td>Precio</td>
+							<td>Paginas</td>			
+						</tr>
+						<c:forEach var="libro" items="${libros}">				
+						<tr>
+							<td>${libro.isbn}</td>
+							<td>${libro.titulo}</td>	
+							<td>${libro.autor}</td>
+							<td>${libro.precio}</td>
+							<td>${libro.paginas}</td>											
+						</tr>			
+						</c:forEach>
+				</table>
+			</c:when>
+			<c:otherwise>
+				<h3 >Sin Libros</h3>
+			</c:otherwise>		
+		</c:choose>
+		</div>
 	</f:form>
 	<div class="form-group">
 		<a href="aBienVenida">Menu</a>

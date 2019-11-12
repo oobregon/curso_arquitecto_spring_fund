@@ -6,13 +6,13 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<security:http use-expressions="false">
-		<!-- mecanismo de autenticacion básico -->
-		<!--  recordemos: basico, formulario, certificado, ... -->
+		<!--  mecanismos de autenticacion: basico, formulario, certificado, ... -->
+		<!-- mecanismo de autenticacion básico. -->		
 		<security:http-basic/>
 		
 		<!-- mecanismo de autenticacion mediante formulario -->
 		<!-- el fichero /miLogin.jsp tiene que tener unos nombres concretos, esto es, las normas que marca la especf. JavaEE  -->
-		<!-- <security:form-login login-page="/miLogin.jsp" authentication-failure-url="erroAutentic.jsp"/> -->
+		<!-- <security:form-login login-page="/miLogin.jsp" authentication-failure-url="errorAutentic.jsp"/> -->
 		
 		<!-- Proteccion de recursos (urls a controllers y urls, a paginas) -->
 		<security:intercept-url pattern="/bienvenida.jsp" access="ROLE_USER,ROLE_ADMIN"/>
@@ -20,22 +20,28 @@
 		
 		<!-- Generalmente, cuando un usuario se autentica , se le crea un token, y con este  la app ya le reconoce en cada pagina. Esto es en entornos profesionales 
 		Pero claro, en esta app nuestra no hay creacion de token, por lo tanto, una vez que nos autenticamos, al navegar a la siguiente pagina
-		se olvida de nosotros, entonces si tuiveramos dichas paginas protegidas nos estaria solicitando la autenticacion. Para evitar que nos esté 
-		pidiendo la autenticacion en cada pagina, lo deshabilitamos -->
+		se olvida de nosotros (porque no hay ningun mecanismo de securizacion que haga que las pags nos recuerden), entonces si tuiveramos dichas paginas protegidas 
+		nos estaria solicitando la autenticacion porque no nos recuerda. Para evitar que se nos esté pidiendo la autenticacion en cada pagina, 
+		deshabilitamos el csrf, que es el mecanismo que consulta al token; al no existir éste, se pide la autenticación. -->
 		<security:csrf disabled="true" />			
 	</security:http>
 	
 	<!--  ############################################################################################################################# -->
 	
-	<!-- A este objeto de spring le tenemos que decir de dónde salen los usuarios que van a usar esta app -->
-	<!-- Opciones: poner los usuarios en este mismo fichero de configuracion, mediante un fichero de propiedades (usuario/contraseña),
-	               usuarios en una BD, usuarios en un LDAP -->
+	<!-- A este objeto, authenticationmanager, de spring, le tenemos que decir de dónde salen los usuarios que van a usar esta app -->
+	<!-- Opciones: - poner los usuarios en este mismo fichero de configuracion
+				   - mediante un fichero de propiedades (usuario/contraseña),
+	               - usuarios en una BD
+	               - usuarios en un LDAP -->
 	<security:authentication-manager>		
 		<security:authentication-provider>	
 			<!--  Mecanismo de encriptacion -->		
 			<!-- <security:password-encoder hash="bcrypt"/>  -->   
 					
 			<!--  Opcion 1 -->
+			<!--  Como no estamos usando mecanismo de encriptacion de la contraseña (esta comentado), entonces tenemos que anteponer la contraseña
+			con el siguiente texto: noop entre llaves ==> {noop}, y de esta manera el autenticationmanager ya sabe que no tiene que encriptar
+			la contraseña que envía el usuario que está intentando logarse (en caso afirmativo se comparan las encriptaciones) -->
 			<security:user-service>
 				<security:user name="user1" password="{noop}user1" authorities="ROLE_USER"/>
 				<security:user name="user2" password="{noop}user2" authorities="ROLE_USER,ROLE_ADMIN"/>
@@ -60,6 +66,7 @@
 	</security:authentication-manager>
 	
 	<!--  ############################################################################################################################# -->
-	
+	<!-- Ejemplo de configuración de proveedor de usuarios mediante ldap 
 	<security:ldap-server id="sldap" url="ldap://localhost:339" manager-dn="admin" manager-password="admin" />
+	-->
 </beans>

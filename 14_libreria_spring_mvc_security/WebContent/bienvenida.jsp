@@ -6,8 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-	
+<body>	
 	<h1>Bienvenido:${sessionScope.clienteLogado.usuario}</h1>
 	<br/><br/>
 	<a href="aTemas">Ver temas</a><br/>

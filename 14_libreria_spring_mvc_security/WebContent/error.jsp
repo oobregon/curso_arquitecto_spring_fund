@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>El usuario ${param.user} con contraseña 
-	${param.pwd} no existe</h1>
+	<h1>El usuario no autorizado</h1>
 	<br/><br/>
-	<a href="toLogin">volver</a>
+	<a href="aBienVenida">volver</a>
 </body>
 </html>

@@ -3,11 +3,9 @@ package controlador;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -29,14 +27,6 @@ public class VentasController {
 	public String inicio(@SessionAttribute("clienteLogado") Cliente usuario,HttpServletRequest req) {		
 		List<Venta> ventas = serv.obtenerVentasCliente(usuario.getIdCliente());
 		req.setAttribute("ventasPorCliente",ventas);		
-		return "ventas";
-	}
-	
-	@GetMapping(value = "aNada")        
-	public String inicioVersionDos(HttpSession sesion,Model model) {
-		Cliente usuario = (Cliente)sesion.getAttribute("clienteLogado");
-		List<Venta> ventas = serv.obtenerVentasCliente(usuario.getIdCliente());
-		model.addAttribute("ventasPorCliente",ventas);
 		return "ventas";
 	}
 }
