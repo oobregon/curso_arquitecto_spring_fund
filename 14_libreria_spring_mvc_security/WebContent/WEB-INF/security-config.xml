@@ -39,7 +39,7 @@
 			<!-- <security:password-encoder hash="bcrypt"/>  -->   
 					
 			<!--  Opcion 1 -->
-			<!--  Como no estamos usando mecanismo de encriptacion de la contraseña (esta comentado), entonces tenemos que anteponer la contraseña
+			<!--  Como no estamos usando mecanismo de encriptacion de la contraseña (está comentado), entonces tenemos que anteponer la contraseña
 			con el siguiente texto: noop entre llaves ==> {noop}, y de esta manera el autenticationmanager ya sabe que no tiene que encriptar
 			la contraseña que envía el usuario que está intentando logarse (en caso afirmativo se comparan las encriptaciones) -->
 			<security:user-service>

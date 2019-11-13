@@ -16,11 +16,15 @@
 </head>
 <body>
 <div class="container">
-	<h1>Menu</h1>	
+	<h1>Menu de Administración</h1>	
 	<h4>Acciones</h4>
 	<div class="form-group">		
-		<a href="aMenuAdm">Nueva cuenta</a><br/>		
-	</div>			
+		<a href="aNuevaCuenta">Nueva cuenta</a>		
+	</div>		
+	<br/><br/>
+	<div class="form-group">
+		<a href="aMenu">Salir</a>
+	</div>	
 </div>
 </body>
 </html>

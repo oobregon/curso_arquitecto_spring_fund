@@ -15,7 +15,9 @@ public class RegistroController {
 	@Autowired
 	DaoClientes daoCliente;
 	
-	// Model es un objeto de Spring en el que guardar cosa, pero su ámbito es mayor que el de Petición pero menor que el de sesión 
+	// Model es un objeto de Spring en el que se guarda el javabean al que se vuelcan los valores de los componentes html,
+	// es decir, es un mapeo que va a usar en el controlador. El ámbito del objeto Model es mayor que el de Petición 
+	// pero menor que el de sesión. No deberíamos usar este objeto Model para guardar parámetros de petición ni se sesión. 
 	// Antes de llegar a la pagina registro, creamos un objeto Cliente vacío.
 	// Este metodo se ejecuta cuando se pulsa el hipervinculo que nos lleva a la pagina registro.
 	// Prepara el objeto Cliente. Este metodo se ejecuta antes de que se cargue el formulario a donde se dirige, en este caso registro

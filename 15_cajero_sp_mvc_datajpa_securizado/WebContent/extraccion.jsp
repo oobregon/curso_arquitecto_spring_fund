@@ -16,22 +16,15 @@
 </head>
 <body>
 <div class="container">
-	<h1>Menu de Usuario</h1>
-	<form>
-		<h2>Cuenta:${sessionScope.cuentaAutenticada.numeroCuenta}</h1>
-		<h5>(Saldo:${sessionScope.cuentaAutenticada.saldo})</h5><br/>
-		<h3>Operaciones</h1>		
-		<div class="form-group">					
-			<a href="aIngreso">Realizar ingreso</a><br/>
-			<a href="aExtraccion">Realizar extracción</a><br/>
-			<a href="aTransferencia">Realizar transferencia</a><br/>
-			<a href="aCambioDeCuenta?cuenta=${cuentaCambiada}">Cambiar a cuenta:</a><input type="text" id="cuentaCambiada" class="form-control" style="width:10%" />	
-		</div>	
-		<br/><br/>
+	<h1>Cuenta:${sessionScope.cuentaAutenticada.numeroCuenta}</h1>
+	<h5>(Saldo:${sessionScope.cuentaAutenticada.saldo})</h5><br/>
+	<h1>Extracción</h1>	
+	<form action="extraccion" method="post">		
 		<div class="form-group">
-			<a href="aMenu">Salir</a>
-		</div>	
-	</form>			
+			<label>Cantidad:</label><input type="text" name="cantidad" class="form-control" style="width:30%" />
+		</div><br/>		
+		<button type="submit" class="btn btn-default">Extraer</button>		
+	</form>
 </div>
 </body>
 </html>

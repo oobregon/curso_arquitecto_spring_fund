@@ -16,7 +16,10 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 	<mvc:view-controller path="aIngreso" view-name="ingreso"/>
+	<mvc:view-controller path="aExtraccion" view-name="extraccion"/>
 	<mvc:view-controller path="aTransferencia" view-name="transferencia"/>
 	<mvc:view-controller path="aUsuarios" view-name="login"/>
-	<mvc:view-controller path="aAdministracion" view-name="administracion"/>		                           
+	<mvc:view-controller path="aAdministracion" view-name="administracion"/>
+	<mvc:view-controller path="aNuevaCuenta" view-name="nuevaCuenta"/>
+	<mvc:view-controller path="aMenu" view-name="menu"/>			
 </beans>

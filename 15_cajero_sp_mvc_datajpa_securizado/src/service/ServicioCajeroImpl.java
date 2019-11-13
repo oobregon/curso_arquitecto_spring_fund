@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import dao.DaoCuentas;
 import dao.DaoMovimientos;
 import model.Cliente;
 import model.Cuenta;
+import model.CuentaForm;
 import model.Movimiento;
 
 @Service (value = "capaservcajero")
@@ -76,6 +78,11 @@ public class ServicioCajeroImpl implements ServicioCajero {
 	public List<Cliente> obtenerTitulares(int idCuenta) {
 		return daoCli.findAllByCuentas(idCuenta);
 	}
+	
+	@Override
+	public List<Cliente> obtenerTitulares() {
+		return daoCli.findAll();		
+	}
 
 	@Override
 	public List<Movimiento> obtenerMovimientos(int numCuenta) {
@@ -86,5 +93,20 @@ public class ServicioCajeroImpl implements ServicioCajero {
 	@Override
 	public double obtenerSaldo(int numCuenta) {
 		return daoCuentas.getOne(numCuenta).getSaldo();
+	}
+	
+	@Transactional
+	@Override
+	public void crearCuenta(CuentaForm cuenta) {
+		Cliente cliente = daoCli.getOne(cuenta.getDni());
+		List<Cliente> clientesCuenta = new ArrayList<Cliente>();
+		List<Movimiento> movsCuenta = new ArrayList<Movimiento>();
+		clientesCuenta.add(cliente);
+		Cuenta c = new Cuenta(cuenta.getNumeroCuenta(),
+							  cuenta.getSaldo(),
+							  cuenta.getTipocuenta());
+		c.setClientes(clientesCuenta);
+		c.setMovimientos(movsCuenta);
+		daoCuentas.save(c);
 	}
 }

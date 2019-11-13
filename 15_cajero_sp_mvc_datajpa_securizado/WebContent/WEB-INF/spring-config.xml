@@ -18,7 +18,7 @@
 	<!-- Configuracion spring data jpa -->
 	<jpa:repositories base-package="dao" transaction-manager-ref="txManager" entity-manager-factory-ref="factoria"></jpa:repositories>
 	
-	<!-- Configuración integración Spring-JPA-Hibernate -->
+	<!-- Configuración integración Spring-JPA-Hibernate -->	
 	<!-- Creación adaptador JPA-Hibernate -->
 	<bean id="adaptador"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -41,11 +41,10 @@
     	</property>
 	</bean>	
 	
-	<!--  Transaccionalidad -->
+	<!-- Transaccionalidad -->
 	<bean id="txManager"
 		class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="factoria"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager"/>
-
 </beans>
