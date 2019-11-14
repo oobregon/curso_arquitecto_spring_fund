@@ -21,5 +21,6 @@
 	<mvc:view-controller path="aUsuarios" view-name="login"/>
 	<mvc:view-controller path="aAdministracion" view-name="administracion"/>
 	<mvc:view-controller path="aNuevaCuenta" view-name="nuevaCuenta"/>
-	<mvc:view-controller path="aMenu" view-name="menu"/>			
+	<mvc:view-controller path="aMenu" view-name="menu"/>
+	<mvc:view-controller path="aOperaciones" view-name="operaciones"/>			
 </beans>

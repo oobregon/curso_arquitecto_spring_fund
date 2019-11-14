@@ -19,14 +19,17 @@ import model.Movimiento;
 
 @Service (value = "capaservcajero")
 public class ServicioCajeroImpl implements ServicioCajero {
-	// La capa de servicio no debe contener ninguna sentencia de acceso a datos, ninguna sentencia
-	// de persistencia (no jdbc, no jpa, no ds). La capa que conoce el acceso a datos es la capa Dao.
-	// Inyectar interfaces de negocio (EJB o spring), no son sentencias de acceso a datos. 
-	//
-	// Viendo esta capa de servicio no debemos ver ningún vínculo a tecnologías de acceso a 
-	// datos. La inyección de EJB,s es independiente de la tecnología de acceso a datos (jpa,
-	// jdbc,etc); si se cambia la tecnología de acceso a datos, esta capa de servicio no se ve
-	// alterada de forma alguna, la inyección de dependencias seguiría siendo tal y como es ahora.
+	/*
+	 La capa de servicio no debe contener ninguna sentencia de acceso a datos, ninguna sentencia
+	 de persistencia (no jdbc, no jpa, no ds). La capa que conoce el acceso a datos es la capa Dao.
+	 Inyectar interfaces de negocio (EJB o spring) de la capa dao no son sentencias de 
+	 acceso a datos. 	
+	
+	 Viendo esta capa de servicio no debemos ver vínculo alguno a tecnologías de acceso a 
+	 datos. La inyección de EJB,s es independiente de la tecnología de acceso a datos (jpa,
+	 jdbc,etc); si se cambia la tecnología de acceso a datos, esta capa de servicio no se ve
+	 alterada de forma alguna, la inyección de dependencias seguiría siendo tal y como es ahora.
+	*/
 	
 	@Autowired
 	DaoClientes daoCli;
@@ -98,15 +101,15 @@ public class ServicioCajeroImpl implements ServicioCajero {
 	@Transactional
 	@Override
 	public void crearCuenta(CuentaForm cuenta) {
-		Cliente cliente = daoCli.getOne(cuenta.getDni());
-		List<Cliente> clientesCuenta = new ArrayList<Cliente>();
-		List<Movimiento> movsCuenta = new ArrayList<Movimiento>();
-		clientesCuenta.add(cliente);
+		Optional<Cliente> opc = daoCli.findById(cuenta.getDni());
+		Cliente cliente = opc.get();		
 		Cuenta c = new Cuenta(cuenta.getNumeroCuenta(),
 							  cuenta.getSaldo(),
 							  cuenta.getTipocuenta());
-		c.setClientes(clientesCuenta);
-		c.setMovimientos(movsCuenta);
+		Movimiento mov = new Movimiento(0,cuenta.getSaldo(),new Date(),"Apertura",c);
+		cliente.getCuentas().add(c);
 		daoCuentas.save(c);
+		daoCli.save(cliente);		
+		daoMov.save(mov);
 	}
 }

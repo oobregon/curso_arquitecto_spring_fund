@@ -1,5 +1,6 @@
 package controlador;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,13 @@ public class OperacionesController {
 		Cuenta cuentaActualizada = sCajero.obtenerCuenta(cuenta.getNumeroCuenta());		
 		sesion.setAttribute("cuentaAutenticada",cuentaActualizada);
 		return "operaciones";
+	}
+	
+	@GetMapping (value = "/movimientos")
+	public String mostrarMovimientos(@SessionAttribute("cuentaAutenticada") Cuenta cuenta,
+									 HttpServletRequest req) {
+		req.setAttribute("movimientos",sCajero.obtenerMovimientos(cuenta.getNumeroCuenta()));
+		return "movimientos";
 	}
 	
 	@GetMapping (value = "aCambioDeCuenta")

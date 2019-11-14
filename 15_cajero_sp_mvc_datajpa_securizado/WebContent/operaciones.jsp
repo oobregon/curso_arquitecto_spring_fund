@@ -25,6 +25,7 @@
 			<a href="aIngreso">Realizar ingreso</a><br/>
 			<a href="aExtraccion">Realizar extracción</a><br/>
 			<a href="aTransferencia">Realizar transferencia</a><br/>
+			<a href="movimientos">Ver movimientos</a><br/>
 			<a href="aCambioDeCuenta?cuenta=${cuentaCambiada}">Cambiar a cuenta:</a><input type="text" id="cuentaCambiada" class="form-control" style="width:10%" />	
 		</div>	
 		<br/><br/>
