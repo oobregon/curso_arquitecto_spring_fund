@@ -1,8 +1,14 @@
 package controlador;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,11 +63,33 @@ public class OperacionesController {
 		return "movimientos";
 	}
 	
-	@GetMapping (value = "aCambioDeCuenta")
+	@GetMapping (value = "/aCambioDeCuenta")
 	public String cambiarDeCuenta(@RequestParam("cuenta") int numCuenta,
 								  HttpSession sesion) {
 		Cuenta cuenta = sCajero.obtenerCuenta(numCuenta);
 		sesion.setAttribute("cuentaAutenticada",cuenta);
 		return "operaciones";
 	}
+	
+	@GetMapping (value = "/cambiarCuentaPorAjax")
+	public void cambiarDeCuentaPorAjax(@RequestParam("cuenta") int numCuenta,
+									   HttpSession sesion,	
+									   HttpServletResponse response) throws IOException {
+		Cuenta cuenta = sCajero.obtenerCuenta(numCuenta);
+		sesion.setAttribute("cuentaAutenticada",cuenta);
+		PrintWriter out = response.getWriter();
+		response.setContentType("text/plain");
+		out.println(convertirJson(cuenta));
+	}
+	
+	
+	private String convertirJson(Cuenta cuenta) {
+		JSONArray array=new JSONArray();
+		JSONObject obj=new JSONObject();
+		obj.put("numeroCuenta",cuenta.getNumeroCuenta());
+		obj.put("saldo",cuenta.getSaldo());		
+		array.add(obj);
+		return array.toJSONString();
+	}
+	
 }

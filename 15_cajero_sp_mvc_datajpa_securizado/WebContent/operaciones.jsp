@@ -13,20 +13,44 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+
+<script type="text/javascript">
+
+	function cambiarCuenta(elemento) {
+		var url = "aCambioDeCuenta?cuenta="+elemento.val();	
+		$.get(url);
+		window.location.href="operaciones.jsp";
+	}
+	
+	function cambiarCuentaPorAjax(elemento) {
+		var url = "cambiarCuentaPorAjax?cuenta="+elemento.val();			
+		$.get(url,function(respuesta,estado) {
+			procesarRespuesta(respuesta);
+		});
+	}
+		
+	function procesarRespuesta(respuesta) {
+		var json = JSON.parse(respuesta);
+		$("#cuentaAutenticada").text(json[0].numeroCuenta);
+		$("#saldoCuentaAutenticada").text(json[0].saldo);	
+	}
+	
+</script>
 </head>
 <body>
 <div class="container">
 	<h1>Menu de Usuario</h1>
 	<form>
-		<h2>Cuenta:${sessionScope.cuentaAutenticada.numeroCuenta}</h1>
-		<h5>(Saldo:${sessionScope.cuentaAutenticada.saldo})</h5><br/>
+		<h2>Cuenta:<label id="cuentaAutenticada">${sessionScope.cuentaAutenticada.numeroCuenta}</label></h2>
+		<h5>(Saldo:<label id="saldoCuentaAutenticada">${sessionScope.cuentaAutenticada.saldo}</label>)</h5>
 		<h3>Operaciones</h1>		
 		<div class="form-group">					
 			<a href="aIngreso">Realizar ingreso</a><br/>
 			<a href="aExtraccion">Realizar extracción</a><br/>
 			<a href="aTransferencia">Realizar transferencia</a><br/>
 			<a href="movimientos">Ver movimientos</a><br/>
-			<a href="aCambioDeCuenta?cuenta=${cuentaCambiada}">Cambiar a cuenta:</a><input type="text" id="cuentaCambiada" class="form-control" style="width:10%" />	
+			<a href="#" id="cambiarCuenta" onclick="cambiarCuentaPorAjax($('#cuentaObjetivo'));">Cambiar a cuenta:</a>
+			<input type="text" id="cuentaObjetivo" class="form-group" style="width:10%" />	
 		</div>	
 		<br/><br/>
 		<div class="form-group">

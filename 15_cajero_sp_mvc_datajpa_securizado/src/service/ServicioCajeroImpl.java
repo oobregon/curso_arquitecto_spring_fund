@@ -100,16 +100,14 @@ public class ServicioCajeroImpl implements ServicioCajero {
 	
 	@Transactional
 	@Override
-	public void crearCuenta(CuentaForm cuenta) {
-		Optional<Cliente> opc = daoCli.findById(cuenta.getDni());
-		Cliente cliente = opc.get();		
+	public void crearCuenta(CuentaForm cuenta) {		
+		Cliente cliente = daoCli.findById(cuenta.getDni()).get();
 		Cuenta c = new Cuenta(cuenta.getNumeroCuenta(),
 							  cuenta.getSaldo(),
 							  cuenta.getTipocuenta());
-		Movimiento mov = new Movimiento(0,cuenta.getSaldo(),new Date(),"Apertura",c);
-		cliente.getCuentas().add(c);
-		daoCuentas.save(c);
-		daoCli.save(cliente);		
-		daoMov.save(mov);
+		Movimiento movimiento = new Movimiento(0,c.getSaldo(),new Date(),"Apertura",c);
+		cliente.getCuentas().add(c);				
+		daoCuentas.save(c);				
+		daoMov.save(movimiento);
 	}
 }
