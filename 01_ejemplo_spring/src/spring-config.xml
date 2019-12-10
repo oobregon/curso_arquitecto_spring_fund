@@ -7,7 +7,6 @@
 
 	<context:annotation-config />
 	
-
 	<bean id="data"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"

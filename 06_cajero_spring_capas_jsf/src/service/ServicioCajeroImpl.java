@@ -24,6 +24,9 @@ public class ServicioCajeroImpl implements ServicioCajero {
 	// datos. La inyección de EJB,s es independiente de la tecnología de acceso a datos (jpa,
 	// jdbc,etc); si se cambia la tecnología de acceso a datos, esta capa de servicio no se ve
 	// alterada de forma alguna, la inyección de dependencias seguiría siendo tal y como es ahora.
+	//
+	// No debe haber nada en esta capa de servicio que nos haga sospechar que la tecnología de acceso 
+	// a datos es una u otra.
 	
 	@Autowired
 	DaoClientes daoCli;

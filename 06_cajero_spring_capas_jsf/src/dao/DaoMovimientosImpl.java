@@ -11,7 +11,7 @@ import model.Movimiento;
 public class DaoMovimientosImpl implements DaoMovimientos {
 	@Autowired
 	JdbcTemplate accDatos;
-
+	
 	@Override
 	public List<Movimiento> findMovimientoByCuenta(int numCuenta) {		
 		String sql = "select * from movimientos where idCuenta = ?";		
