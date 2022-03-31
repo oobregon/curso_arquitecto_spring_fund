@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-  	<propiedades-spring>5.1.5.RELEASE</propiedades-spring>
+  	<propiedades-spring>5.3.18</propiedades-spring>
   </properties>
   <dependencies>
   	<dependency>
